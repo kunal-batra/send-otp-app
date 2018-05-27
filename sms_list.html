@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>List Of Messages</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="sms_list.css">
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">My Contacts App</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Contact List</a></li>
+				<li class="active"><a href="sms_list.html">Sent Messages</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="heading">List of Sent Messages</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Time of SMS</th>
+							<th>OTP</th>
+						</tr>
+					</thead>
+					<tbody class="table-body">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+
+		// getting data from local storage
+		var otpDetails = JSON.parse(localStorage.getItem('msgDetails'));
+
+		// appending data in table by traversing through local storage data (present in JSON form)
+		$.each(otpDetails.reverse(), function(){
+			$('.table-body').append('<tr><td>'+this.Name+'</td><td>'+this.Time+'</td><td>'+this.OTP+'</td></tr>');
+		});
+	});
+</script>
+</html>
